@@ -39,6 +39,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnExp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,26 +74,26 @@
             // 
             this.tboxUser.Location = new System.Drawing.Point(99, 11);
             this.tboxUser.Name = "tboxUser";
-            this.tboxUser.Size = new System.Drawing.Size(100, 20);
+            this.tboxUser.Size = new System.Drawing.Size(203, 20);
             this.tboxUser.TabIndex = 3;
             // 
             // tboxIP
             // 
             this.tboxIP.Location = new System.Drawing.Point(99, 34);
             this.tboxIP.Name = "tboxIP";
-            this.tboxIP.Size = new System.Drawing.Size(100, 20);
+            this.tboxIP.Size = new System.Drawing.Size(203, 20);
             this.tboxIP.TabIndex = 4;
             // 
             // tboxKet
             // 
             this.tboxKet.Location = new System.Drawing.Point(99, 57);
             this.tboxKet.Name = "tboxKet";
-            this.tboxKet.Size = new System.Drawing.Size(100, 20);
+            this.tboxKet.Size = new System.Drawing.Size(203, 20);
             this.tboxKet.TabIndex = 5;
             // 
             // btnCari
             // 
-            this.btnCari.Location = new System.Drawing.Point(204, 10);
+            this.btnCari.Location = new System.Drawing.Point(308, 8);
             this.btnCari.Name = "btnCari";
             this.btnCari.Size = new System.Drawing.Size(75, 23);
             this.btnCari.TabIndex = 6;
@@ -102,7 +103,7 @@
             // 
             // btnTambah
             // 
-            this.btnTambah.Location = new System.Drawing.Point(204, 34);
+            this.btnTambah.Location = new System.Drawing.Point(308, 32);
             this.btnTambah.Name = "btnTambah";
             this.btnTambah.Size = new System.Drawing.Size(75, 23);
             this.btnTambah.TabIndex = 7;
@@ -112,7 +113,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(204, 58);
+            this.btnEdit.Location = new System.Drawing.Point(308, 56);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 8;
@@ -122,7 +123,7 @@
             // 
             // btnHapus
             // 
-            this.btnHapus.Location = new System.Drawing.Point(204, 82);
+            this.btnHapus.Location = new System.Drawing.Point(308, 80);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(75, 23);
             this.btnHapus.TabIndex = 9;
@@ -137,14 +138,25 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(2, 111);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(279, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(391, 150);
             this.dataGridView1.TabIndex = 10;
+            // 
+            // btnExp
+            // 
+            this.btnExp.Location = new System.Drawing.Point(99, 82);
+            this.btnExp.Name = "btnExp";
+            this.btnExp.Size = new System.Drawing.Size(75, 23);
+            this.btnExp.TabIndex = 11;
+            this.btnExp.Text = "Export Excel";
+            this.btnExp.UseVisualStyleBackColor = true;
+            this.btnExp.Click += new System.EventHandler(this.btnExp_Click);
             // 
             // InputDataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(395, 264);
+            this.Controls.Add(this.btnExp);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnHapus);
             this.Controls.Add(this.btnEdit);
@@ -177,6 +189,7 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnHapus;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnExp;
     }
 }
 

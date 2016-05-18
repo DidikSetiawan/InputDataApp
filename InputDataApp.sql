@@ -1,4 +1,4 @@
-create procedure getData
+create procedure getDataK
 as
 select * from datakomputer
 go

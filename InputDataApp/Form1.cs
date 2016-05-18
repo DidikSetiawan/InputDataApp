@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace InputDataApp
 {
@@ -138,6 +139,72 @@ namespace InputDataApp
                 MessageBox.Show("Data berhasil dihapus", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 awal();
                 BindGrid();
+            }
+        }
+
+        private void btnExp_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(strconn))
+            {
+                string sql = null;
+                string data = null;
+
+                Excel.Application xlApp;
+                Excel.Workbook xlWorkBook;
+                Excel.Worksheet xlWorkSheet;
+                object misValue = System.Reflection.Missing.Value;
+
+                xlApp = new Excel.Application();
+                xlWorkBook = xlApp.Workbooks.Add(misValue);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+                conn.Open();
+                sql = "getData";
+                SqlDataAdapter dscmd = new SqlDataAdapter(sql, conn);
+                DataSet ds = new DataSet();
+                dscmd.Fill(ds);
+
+                for (int i = 0; i < ds.Tables[0].Columns.Count; i++)
+                {
+                    xlWorkSheet.Cells[1, (i + 1)] = ds.Tables[0].Columns[i].ColumnName;
+                }
+
+                for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j <= ds.Tables[0].Columns.Count - 1; j++)
+                    {
+                        data = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                        xlWorkSheet.Cells[i + 2, j + 1] = data;
+                    }
+                }
+
+                xlWorkBook.SaveAs("D:\\InputDataAppOutput.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.Close(true, misValue, misValue);
+                xlApp.Quit();
+
+                releaseObject(xlWorkSheet);
+                releaseObject(xlWorkBook);
+                releaseObject(xlApp);
+
+                MessageBox.Show("File berhasil di-export, Anda bisa menemukannya di D:\\didiks\\C#\\InputData3App\\InputDataAppOutput.xls");
+            }
+        }
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
             }
         }
     }
