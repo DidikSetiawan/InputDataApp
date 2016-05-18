@@ -26,7 +26,7 @@ namespace InputDataApp
         {
             using (SqlConnection conn = new SqlConnection(strconn))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM datakomputer", conn))
+                using (SqlCommand cmd = new SqlCommand("getDataK", conn))
                 {
                     cmd.CommandType = CommandType.Text;
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -60,7 +60,8 @@ namespace InputDataApp
             {
                 using (SqlConnection conn = new SqlConnection(strconn))
                 {
-                    cmd = new SqlCommand("select * from datakomputer where NamaUser='" + tboxUser.Text + "'", conn);
+                    cmd = new SqlCommand("getDataCari @namauser", conn);
+                    cmd.Parameters.Add("@namauser", SqlDbType.VarChar, 30).Value = tboxUser.Text;
                     conn.Open();
                     rd = cmd.ExecuteReader();
                     rd.Read();
@@ -90,7 +91,10 @@ namespace InputDataApp
             {
                 using (SqlConnection conn = new SqlConnection(strconn))
                 {
-                    cmd = new SqlCommand("insert into datakomputer (NamaUser,IP_Address,Deskripsi) values ('" + tboxUser.Text + "','" + tboxIP.Text + "','" + tboxKet.Text + "')", conn);
+                    cmd = new SqlCommand("upDataK @namauser, @ipaddr, @ket", conn);
+                    cmd.Parameters.Add("@namauser", SqlDbType.VarChar, 30).Value = tboxUser.Text;
+                    cmd.Parameters.Add("@ipaddr", SqlDbType.VarChar, 30).Value = tboxIP.Text;
+                    cmd.Parameters.Add("@ket", SqlDbType.VarChar, 30).Value = tboxKet.Text;
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil disimpan", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -110,7 +114,10 @@ namespace InputDataApp
             {
                 using (SqlConnection conn = new SqlConnection(strconn))
                 {
-                    cmd = new SqlCommand("update datakomputer set NamaUser='" + tboxUser.Text + "', IP_Address='" + tboxIP.Text + "', Deskripsi='" + tboxKet.Text + "' where NamaUser ='" + tboxUser.Text + "'", conn);
+                    cmd = new SqlCommand("upDataEdit @namauser, @ipaddr, @ket", conn);
+                    cmd.Parameters.Add("@namauser", SqlDbType.VarChar, 30).Value = tboxUser.Text;
+                    cmd.Parameters.Add("@ipaddr", SqlDbType.VarChar, 30).Value = tboxIP.Text;
+                    cmd.Parameters.Add("@ket", SqlDbType.VarChar, 30).Value = tboxKet.Text;
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil diedit", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -124,7 +131,8 @@ namespace InputDataApp
         {
             using (SqlConnection conn = new SqlConnection(strconn))
             {
-                cmd = new SqlCommand("delete from datakomputer where NamaUser='" + tboxUser.Text + "'", conn);
+                cmd = new SqlCommand("upDataDel @namauser", conn);
+                cmd.Parameters.Add("@namauser", SqlDbType.VarChar, 30).Value = tboxUser.Text;
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Data berhasil dihapus", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
