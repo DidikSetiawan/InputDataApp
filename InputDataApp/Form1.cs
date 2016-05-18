@@ -186,7 +186,7 @@ namespace InputDataApp
                 releaseObject(xlWorkBook);
                 releaseObject(xlApp);
 
-                MessageBox.Show("File berhasil di-export, Anda bisa menemukannya di D:\\didiks\\C#\\InputData3App\\InputDataAppOutput.xls");
+                MessageBox.Show("File berhasil di-export, Anda bisa menemukannya di D:\\InputDataAppOutput.xls");
             }
         }
 
